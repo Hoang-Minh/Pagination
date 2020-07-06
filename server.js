@@ -3,16 +3,17 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
-let mainRoutes = require("./routes/main")
+let mainRoutes = require("./routes/main");
 
-//mongodb://localhost/yelp_camp
-mongoose.connect("mongodb://localhost/article1", {
+mongoose
+  .connect("mongodb://localhost/article1", {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
-    useUnifiedTopology: true
-}).then(() => console.log("Database connected"))
-.catch(err => console.log("Error: " + err.Message));
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Database connected"))
+  .catch((err) => console.log("Error: " + err.Message));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,5 +24,5 @@ app.use(mainRoutes);
 
 let port = 3000;
 app.listen(port, () => {
-    console.log("Server started on port: " + port);
+  console.log("Server started on port: " + port);
 });
